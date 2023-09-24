@@ -1,13 +1,17 @@
 import { useState } from "react";
-import { Logos } from "./components/Logos";
-import { StaticComponent } from "./components/StaticComponent";
+
 import { PropComponent } from "./components/PropComponent";
-import { Component } from "./components/ComponentWithCss/Component";
-import { PropComponentPropTypes } from "./components/PropComponentPropTypes";
+
+
+
 export const App = () => {
   // Example of Reactive Data using react Hook useState
   const [count, setCount] = useState(0);
   const [name, setName] = useState("Diego Zito");
+  const [age , setAge] = useState(0);
+  const [country , setCountry] = useState("Sweden");
+  const [pizza , setPizza] = useState(false);
+  const [cards , setCards] = useState([]);
 
   // Function expression to showcase reactiveData in action
   const addOne = () => setCount((count) => count + 1);
@@ -19,36 +23,61 @@ export const App = () => {
       setName(newName); // Update the name state with the new name if a value is provided
     }
   };
+  const handleAge = ()=>{
+    const newAge = prompt("Enter your age:");
+    {newAge ? setAge(newAge) : setAge}
+
+  }
+  const handleCountry = ()=>{
+    const newCountry = prompt("Enter your country:");
+    {newCountry ? setCountry(newCountry) : setCountry}
+
+  }
+  const FavPizza = ()=>{
+    const likePineapplePizza = prompt("Do you like pineapple pizza? yes or No");
+    {likePineapplePizza === "yes" ?  setPizza(true) : setPizza(false)}
+
+  }
+
+  
+  
+
 
   // Staticc Data Inyected through {} reference
-  const appContent = {
-    heading: "Vite + React Technigo Boilerplate",
-    reactivedataExampleOne:
-      "Here is an example on how a simple reactHook works using a counter",
-    reactivedataExampleTwo:
-      "Here is an example on how a simple reactHook works using a button to change the name on screen",
-    reactivedataExampleThree:
-      "Before you decide to delete all components and start from scratch, we suggest examining them closely to grasp their structure. They can act as a blueprint for your future work.",
-    componentInfo: " Here is some component examples:",
-  };
+
   return (
     <>
       {/* Component Example */}
-      <Logos />
-      <h1>{appContent.heading}</h1>
-      <p>{appContent.reactivedataExampleThree}</p>
+      
+     
+ 
       <div className="card">
-        <p>{appContent.reactivedataExampleOne}</p>
+      
         <button onClick={addOne}>count is {count}</button>
         <hr />
-        <p>{appContent.reactivedataExampleTwo}</p>
-        <h3>{name}</h3>
+    
+        <h3>your name is :{name}</h3>
         <button onClick={handleNameUpdate}>Change Name</button>
         <hr />
+
+        <h3>you are {age} years old</h3>
+        <button onClick={handleAge}>Change age</button>
+         <hr />
+         <h3>your country is {country}</h3>
+        <button onClick={handleCountry}>Change Country</button>
+        <hr />
+         <h3>your favourite pizza is pineapple pizaa ? {pizza ? "yes" : "No" }</h3>
+        <button onClick={FavPizza}>Change favourite Pizza</button>
+        <hr />
+        <button onClick={()=>{
+          setCards((cards) => [<PropComponent key={name} name={name} age={age} birthplace={country} likesPizza={pizza}/>, ...cards ])
+        }}>Generate a card</button>
+        
       </div>
+      
       <div>
-        <h2>{appContent.componentInfo}</h2>
-        <StaticComponent />
+        <hr />
+        {cards}
         <hr />
         <PropComponent
           name="Diego"
@@ -68,10 +97,10 @@ export const App = () => {
           birthplace="Landvetter, Sweeden"
           likesPizza={false}
         />
-        <hr />
-        <Component />
-        <hr />
-        <PropComponentPropTypes
+    
+        
+      
+        <PropComponent 
           name="Jennie"
           age={35}
           birthplace="Kalmar, Sweeden"

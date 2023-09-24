@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-unescaped-entities */
 // In React, a component is like a LEGO piece for building websites. Props are the special instructions I give to that LEGO piece to make it look or act differently each time I use it!
 export const PropComponent = ({ name, age, birthplace, likesPizza }) => {
   return (
@@ -9,7 +11,7 @@ export const PropComponent = ({ name, age, birthplace, likesPizza }) => {
       <strong>Do you like pineapple pizza?</strong>
 
       {likesPizza ? (
-        <p>I like pineapple pizza! 🍍🍕</p>
+        <p>yes ,I like pineapple pizza! 🍍🍕</p>
       ) : (
         <p>No, I do not like pineapple pizza! 🍍🍕</p>
       )}
